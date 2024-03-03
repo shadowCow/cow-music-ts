@@ -1,4 +1,4 @@
-import { Keyboard, PianoKey } from "../model/notes";
+import { Keyboard, PianoKey } from "../model/keyboard";
 
 export function PianoRoll<K extends PianoKey>(props: {
   keyboard: Keyboard<K>;
@@ -8,7 +8,7 @@ export function PianoRoll<K extends PianoKey>(props: {
     <div style={{ display: "flex", gap: "0px" }}>
       <KeyColumn keys={props.keyboard.keys()} />
       {props.notes.map((n) => (
-        <NoteColumn keyboard={props.keyboard} note={n} />
+        <NoteColumn key={n} keyboard={props.keyboard} note={n} />
       ))}
     </div>
   );
@@ -17,7 +17,7 @@ export function PianoRoll<K extends PianoKey>(props: {
 function KeyColumn(props: { keys: Readonly<Array<PianoKey>> }): JSX.Element {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
-      {props.keys.map((k, i) => (
+      {props.keys.map((k) => (
         <p
           key={k}
           style={{
